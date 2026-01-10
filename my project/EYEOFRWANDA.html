@@ -7,11 +7,12 @@
 <style>
 /* GLOBAL STYLES */
 *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
-body{background:#f4f4f4;color:#333;line-height:1.6;scroll-behavior:smooth;}
+body{background:##007f00;color:#333;line-height:1.6;scroll-behavior:smooth;}
 a{text-decoration:none;color:inherit;}
 h1,h2{color:#2c2c2c;} /* Big titles dark grey */
 h3{color:#e67e22;} /* Small titles orange */
 img{display:block;width:100%;border-radius:10px;}
+
 
 /* NAVIGATION */
 nav{
@@ -30,6 +31,44 @@ nav ul{list-style:none;display:flex;gap:25px;}
 nav ul li{cursor:pointer;font-weight:bold;color:white;transition:0.3s;}
 nav ul li:hover{color:#e67e22;}
 
+/* Navigation container styling */
+.navbar {
+    display: flex;                  /* Align logo and menu horizontally */
+    justify-content: space-between; /* Push logo left, menu right */
+    align-items: center;            /* Vertically center items */
+    padding: 14px 32px;             /* Space inside navbar */
+}
+
+/* Logo + text container */
+.logo-area {
+    display: flex;                  /* Align logo and text inline */
+    align-items: center;
+    gap: 12px;                      /* Space between logo and slogan */
+}
+
+/* Logo image size control */
+.logo-img {
+    height: 150px;                   /* Controls logo height */
+    width: auto;                    /* Maintain aspect ratio */
+}
+
+/* Logo slogan styling */
+.logo-text {
+    font-size: 0.9rem;              /* Smaller than normal heading */
+    font-weight: 500;
+    color: #b30000;                 /* Deep red matching logo sketch */
+    max-width: 280px;               /* Prevents overly long lines */
+    line-height: 1.2;
+}
+
+/* Navigation links list */
+.nav-links {
+    list-style: none;               /* Remove bullet points */
+    display: flex;                  /* Align menu items horizontally */
+    gap: 24px;                      /* Space between menu items */
+    margin: 0;
+    padding: 0;
+}
 /* HERO SECTION */
 .hero{
     height:100vh;
@@ -50,14 +89,14 @@ nav ul li:hover{color:#e67e22;}
     background-size: cover;
     background-position: center;
     opacity: 0;
-    animation: slideAnimation 18s infinite;
+    animation: slideAnimation 200s infinite;
 }
 .slide1 { background-image: url("https://images.unsplash.com/photo-1546182990-dffeafbe841d"); animation-delay: 0s; }
-.slide2 { background-image: url("https://images.unsplash.com/photo-1587034924976-6c3f74e08df6"); animation-delay: 3s; }
-.slide3 { background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"); animation-delay: 6s; }
-.slide4 { background-image: url("https://images.unsplash.com/photo-1526328905034-3f9d4c9fefc2"); animation-delay: 9s; }
-.slide5 { background-image: url("https://images.unsplash.com/photo-1601582585293-63c0c4c6fa6c"); animation-delay: 12s; }
-.slide6 { background-image: url("https://images.unsplash.com/photo-1586864387967-d02ef85d93e8"); animation-delay: 15s; }
+/*.slide2 { background-image: url("https://images.unsplash.com/photo-1587034924976-6c3f74e08df6"); animation-delay: 1s; }
+.slide3 { background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"); animation-delay: 2s; }
+.slide4 { background-image: url("https://images.unsplash.com/photo-1526328905034-3f9d4c9fefc2"); animation-delay: 3s; }
+.slide5 { background-image: url("https://images.unsplash.com/photo-1601582585293-63c0c4c6fa6c"); animation-delay: 4s; }
+.slide6 { background-image: url("https://images.unsplash.com/photo-1586864387967-d02ef85d93e8"); animation-delay: 5s; }*/
 
 @keyframes slideAnimation {
     0% { opacity: 0; }
@@ -247,7 +286,7 @@ section{padding:80px 60px;}
 }
 
 .info p {
-  max-width: 800px;          /* controls square width */
+  max-width: 700px;          /* controls square width */
   min-height: 400px;         /* makes it square-like */
   padding: 25px;
   background: #f5f5f5;
@@ -341,8 +380,17 @@ footer .bottom-footer{margin-top:20px;font-size:14px;color:#ccc;text-align:cente
 
 <!-- HERO -->
 <header class="hero">
-<nav>
-    <h1>Explore Rwanda</h1>
+<nav class="navbar">
+    <div class="logo-area">
+        <img 
+            src="D:\myprojects\EYE-OF-RWANDA\my project/SEERWANDA.png" 
+            alt="EyeRwanda Logo"
+            class="logo-img"
+        />
+        <!-- <span class="logo-text">
+            See Our Beautiful Rwanda in Your Beautiful Eyes
+        </span> -->
+    </div>
     <ul>
         <li>Home</li>
         <li>About Rwanda</li>
@@ -383,7 +431,7 @@ footer .bottom-footer{margin-top:20px;font-size:14px;color:#ccc;text-align:cente
 
     Following the 1994 genocide, Rwanda has emerged as a symbol of peace and reconciliation, with safe, clean cities and thriving communities. Kigali, the capital, offers modern amenities, museums, and markets, while towns like Musanze serve as gateways to natural wonders.
 
-    With a moderate climate, Rwanda is ideal to visit year-round, particularly during dry seasons (June–September, December–February). Travelers leave Rwanda with unforgettable experiences—stunning landscapes, wildlife encounters, cultural immersion, and personal growth—making it a truly unique destination in Africa.
+    
 </p>
 
 </div>
