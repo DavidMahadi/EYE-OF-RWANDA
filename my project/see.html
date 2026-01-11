@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Rwanda | Land of a Thousand Hills</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2 {
+    color: #2c2c2c;
+}
+
+h3 {
+    color: #2d8f3c;
+}
+
+/* ============================================
+   CSS ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideAnimation {
+    0% { opacity: 0; transform: scale(1); }
+    5% { opacity: 1; transform: scale(1.05); }
+    20% { opacity: 1; transform: scale(1.1); }
+    25% { opacity: 0; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes imageSlideshow {
+    0% { 
+        opacity: 0;
+        transform: scale(1.2) translateX(-30px);
+    }
+    8% { 
+        opacity: 1;
+        transform: scale(1.1) translateX(0);
+    }
+    25% { 
+        opacity: 1;
+        transform: scale(1.15) translateX(0);
+    }
+    33% { 
+        opacity: 0;
+        transform: scale(1) translateX(30px);
+    }
+    100% { 
+        opacity: 0;
+        transform: scale(1) translateX(0);
+    }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    position: sticky;
+    top: 0;
+    background: transparent;;
+    backdrop-filter: none;
+    z-index: 1000;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    height: 120px;
+    width: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: block;
+}
+
+nav ul li a:hover {
+    color: #2d8f3c;
+    background: rgba(45, 143, 60, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.slides {
+    position: absolute;
+    inset: 0;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: slideAnimation 30s infinite;
+}
+
+.slide1 { 
+    background-image: url("https://images.unsplash.com/photo-1551631321-45e9f9c01a1b?w=1600");
+    animation-delay: 0s; 
+}
+.slide2 { 
+    background-image: url("https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1600");
+    animation-delay: 5s; 
+}
+.slide3 { 
+    background-image: url("https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=1600");
+    animation-delay: 10s; 
+}
+.slide4 { 
+    background-image: url("https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1600");
+    animation-delay: 15s; 
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 10px #000;
+}
+
+.hero-content p {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 5px #000;
+}
+
+.hero-content a {
+    padding: 18px 40px;
+    background: #2d8f3c;
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    transition: all 0.4s ease;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.hero-content a:hover {
+    transform: scale(1.1);
+    background: #257531;
+    box-shadow: 0 10px 30px rgba(45, 143, 60, 0.6);
+}
+
+/* ============================================
+   SECTION STYLING
+   ============================================ */
+section {
+    padding: 80px 60px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.title h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #2c2c2c;
+}
+
+.title h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #2d8f3c;
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+.title p {
+    font-size: 18px;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   HORIZONTAL LAYOUT WITH MOVING PICTURES
+   ============================================ */
+#about {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1600') center/cover fixed;
+    color: white;
+    background-attachment: fixed;
+}
+
+#cities {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1600') center/cover fixed;
+    color: white;
+    background-attachment: fixed;
+}
+
+.horizontal-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 4px solid #2d8f3c;
+}
+
+.horizontal-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 80px rgba(45, 143, 60, 0.4);
+    transition: all 0.5s ease;
+}
+
+/* Picture Gallery - Moving Slideshow */
+.picture-gallery {
+    flex: 0 0 45%;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    min-height: 600px;
+}
+
+.gallery-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: imageSlideshow 24s infinite;
+}
+
+.gallery-image:nth-child(1) { animation-delay: 0s; }
+.gallery-image:nth-child(2) { animation-delay: 6s; }
+.gallery-image:nth-child(3) { animation-delay: 12s; }
+.gallery-image:nth-child(4) { animation-delay: 18s; }
+
+/* Text Content */
+.text-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+.text-content h3 {
+    font-size: 22px;
+    color: #2d8f3c;
+    margin: 20px 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.text-content h3:first-child {
+    margin-top: 0;
+}
+
+.text-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Reverse layout for Cities */
+.horizontal-container.reverse {
+    flex-direction: row-reverse;
+    border-color: #34a345;
+}
+
+/* ============================================
+   OTHER SECTIONS
+   ============================================ */
+#attractions {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1600') center/cover fixed;
+    color: white;
+    background-attachment: fixed;
+}
+
+#adventure {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1551631321-45e9f9c01a1b?w=1600') center/cover fixed;
+    color: white;
+    background-attachment: fixed;
+}
+
+#gains {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=1600') center/cover fixed;
+    color: white;
+    background-attachment: fixed;
+}
+
+#culture {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600') center/cover fixed;
+    color: white;
+    background-attachment: fixed;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    border-top: 4px solid #2d8f3c;
+    transition: all 0.5s ease;
+}
+
+.card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 25px 40px rgba(45, 143, 60, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card:hover img {
+    transform: scale(1.15);
+}
+
+.card div {
+    padding: 25px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #2d8f3c;
+}
+
+.card p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.image-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.image-row img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #2d8f3c;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.image-row img:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 15px 35px rgba(45, 143, 60, 0.5);
+    border-color: #34a345;
+}
+
+/* Culture Cards */
+.culture-card {
+    position: relative;
+    padding-top: 80px;
+}
+
+.card-icon {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 48px;
+    background: linear-gradient(135deg, #2d8f3c, #34a345);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(45, 143, 60, 0.4);
+    transition: all 0.4s ease;
+}
+
+.culture-card:hover .card-icon {
+    transform: translateX(-50%) scale(1.2) rotate(360deg);
+}
+
+/* ============================================
+   FAQ SECTION
+   ============================================ */
+#faq {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+                url('https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1600') center/cover fixed;
+    background-attachment: fixed;
+    color: #ffffff;
+    padding: 100px 60px;
+    position: relative;
+}
+
+#faq::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(45, 143, 60, 0.2) 0%, transparent 50%);
+    animation: breathe 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.faq-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border-left: 5px solid #2d8f3c;
+    transition: all 0.4s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 15px 45px rgba(45, 143, 60, 0.4);
+    transform: translateY(-8px);
+}
+
+.faq-item input[type="checkbox"] {
+    display: none;
+}
+
+.faq-question {
+    background: linear-gradient(135deg, #1e6f2f 0%, #2d5f47 100%);
+    color: white;
+    padding: 22px 30px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.faq-question::before {
+    content: "❓";
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+.faq-question:hover {
+    background: linear-gradient(135deg, #2d5f47 0%, #1e3a2e 100%);
+    padding-left: 35px;
+}
+
+.faq-question::after {
+    content: "+";
+    font-size: 32px;
+    font-weight: 300;
+    transition: all 0.4s ease;
+    background: rgba(255, 255, 255, 0.2);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.faq-item input[type="checkbox"]:checked + .faq-question {
+    background: linear-gradient(135deg, #1e3a2e 0%, #0f2419 100%);
+}
+
+.faq-item input[type="checkbox"]:checked + .faq-question::after {
+    transform: rotate(135deg);
+}
+
+.faq-answer {
+    padding: 0 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    color: #333;
+    line-height: 1.8;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.faq-item input[type="checkbox"]:checked ~ .faq-answer {
+    padding: 28px 30px;
+    max-height: 800px;
+    border-top: 2px solid rgba(45, 143, 60, 0.2);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    padding: 50px 60px 25px;
+}
+
+.footer-branding {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.footer-branding h3 {
+    font-size: 28px;
+    color: #2d8f3c;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-8px) scale(1.2);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.footer-section h4 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #2d8f3c;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: #c0c0c0;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #2d8f3c;
+    padding-left: 10px;
+}
+
+.footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2d8f3c, transparent);
+    margin: 25px 0 20px;
+}
+
+.bottom-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #999;
+}
+
+.bottom-footer-right {
+    display: flex;
+    gap: 20px;
+}
+
+.bottom-footer-right a {
+    color: #999;
+    transition: all 0.3s;
+}
+
+.bottom-footer-right a:hover {
+    color: #2d8f3c;
+}
+
+/* ============================================
+   POPUP MODAL
+   ============================================ */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background: white;
+    max-width: 520px;
+    width: 90%;
+    padding: 35px;
+    border-radius: 14px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.close:hover {
+    color: #2d8f3c;
+    transform: rotate(90deg);
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    color: #2d8f3c;
+}
+
+.popup-content input,
+.popup-content select,
+.popup-content textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.popup-content button {
+    width: 100%;
+    padding: 15px;
+    background: #2d8f3c;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.popup-content button:hover {
+    background: #257531;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 992px) {
+    .horizontal-container {
+        flex-direction: column;
+    }
+    
+    .horizontal-container.reverse {
+        flex-direction: column;
+    }
+    
+    .picture-gallery {
+        flex: 1;
+        min-height: 400px;
+    }
+    
+    .text-content {
+        max-height: none;
+    }
+    
+    .faq-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 20px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    section {
+        padding: 50px 30px;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+    
+    section {
+        padding: 40px 20px;
+    }
+    
+    .image-row {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<nav>
+    <div class="logo-area">
+        <img src="SEERWANDA.png" alt="See Rwanda Logo" class="logo-img">
+    </div>
+    
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About Rwanda</a></li>
+        <li><a href="#attractions">Attractions</a></li>
+        <li><a href="#culture">Culture & Cuisine</a></li>
+        <li><a href="#faq">FAQ</a></li>
+    </ul>
+</nav>
+
+<div class="slides">
+    <div class="slide slide1"></div>
+    <div class="slide slide2"></div>
+    <div class="slide slide3"></div>
+    <div class="slide slide4"></div>
+</div>
+
+<div class="hero-content">
+    <h1>Discover Rwanda</h1>
+    <p>The Land of a Thousand Hills, Home of Gorillas & Adventure</p>
+    <a href="#trip-popup">Plan Your Trip</a>
+</div>
+</header>
+
+<!-- ABOUT RWANDA - HORIZONTAL LAYOUT -->
+<section id="about">
+<div class="title">
+<h2>About Rwanda</h2>
+<p>Rwanda is a safe and scenic country in East Africa, famous for its rolling hills, lakes, volcanoes, and rich cultural heritage.</p>
+</div>
+
+<div class="horizontal-container">
+    <!-- Moving Picture Gallery (Left Side) -->
+    <div class="picture-gallery">
+        <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1000" alt="Rwandan Green Hills" class="gallery-image">
+        <img src="https://images.unsplash.com/photo-1551631321-45e9f9c01a1b?w=1000" alt="Mountain Gorillas" class="gallery-image">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000" alt="Lake Kivu" class="gallery-image">
+        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1000" alt="Volcanoes" class="gallery-image">
+    </div>
+    
+    <!-- Text Content (Right Side) -->
+    <div class="text-content">
+        <h3>🏔️ Land of a Thousand Hills</h3>
+        <p>Rwanda is a small but remarkably diverse country in East Africa. Known for its rolling green hills, volcanoes, lakes, and rivers, Rwanda offers breathtaking landscapes that appeal to adventurers, nature lovers, and culture enthusiasts alike.</p>
+        
+        <h3>🦍 Wildlife Paradise</h3>
+        <p>Despite its size, the country boasts a rich variety of wildlife, including endangered mountain gorillas, golden monkeys, and over 700 bird species, making it a top destination for eco-tourism and wildlife safaris.</p>
+        
+        <h3>🏖️ Natural Beauty</h3>
+        <p>Lake Kivu, one of Africa's largest freshwater lakes, provides serene beaches, water sports, and picturesque sunsets. Perfect for those seeking relaxation and scenic beauty.</p>
+        
+        <h3>🛡️ Safety & Peace</h3>
+        <p>Following the 1994 genocide, Rwanda has emerged as a symbol of peace and reconciliation. It's one of the safest African countries, with clean cities and thriving communities.</p>
+        
+        <h3>🌱 Eco-Friendly Nation</h3>
+        <p>Rwanda is the first plastic-bag free nation in Africa and leads in environmental conservation. Kigali is known as the cleanest city on the continent.</p>
+        
+        <h3>🎭 Rich Culture</h3>
+        <p>Rwanda is rich in culture and tradition, with welcoming people who speak Kinyarwanda, French, and English. Visitors can immerse themselves in local music, dance, art, and handicrafts.</p>
+    </div>
+</div>
+</section>
+
+<!-- ATTRACTIONS -->
+<section id="attractions">
+<div class="title">
+<h2>Top Attractions</h2>
+<p>From gorilla trekking to beautiful lakes, Rwanda offers unforgettable experiences for all travelers.</p>
+</div>
+<div class="grid">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551631321-45e9f9c01a1b?w=600" alt="Mountain Gorilla">
+<div>
+<h3>🦍 Gorilla Trekking</h3>
+<p>Experience endangered mountain gorillas in Volcanoes National Park, an adventure of a lifetime.</p>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=600" alt="Wildlife Safari">
+<div>
+<h3>🦁 Wildlife Safari</h3>
+<p>Akagera National Park offers safaris with elephants, lions, hippos, and rich birdlife.</p>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600" alt="Lake Kivu">
+<div>
+<h3>🏖️ Lake Kivu</h3>
+<p>Relax along the serene shores of Lake Kivu, enjoy water sports, and stunning sunsets.</p>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600" alt="Volcanoes">
+<div>
+<h3>🌋 Volcanoes National Park</h3>
+<p>Hike volcanoes, spot golden monkeys, and enjoy Rwanda's iconic landscapes.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ADVENTURE -->
+<section id="adventure">
+<div class="title">
+<h2>Adventure & Eco-Tourism</h2>
+<p>Rwanda is ideal for eco-conscious travelers seeking adventure and sustainable tourism experiences.</p>
+</div>
+<div class="image-row">
+<img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600" alt="Hiking">
+<img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=600" alt="Kayaking">
+<img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=600" alt="Canopy Walk">
+<img src="https://images.unsplash.com/photo-1547970810-dc1eac37d174?w=600" alt="Wildlife">
+</div>
+</section>
+
+<!-- CITIES & LIFESTYLE - HORIZONTAL LAYOUT (REVERSED) -->
+<section id="cities">
+<div class="title">
+<h2>Cities & Lifestyle</h2>
+<p>Experience Rwanda's urban charm mixed with traditional culture.</p>
+</div>
+
+<div class="horizontal-container reverse">
+    <!-- Moving Picture Gallery (Right Side) -->
+    <div class="picture-gallery">
+        <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?w=1000" alt="Kigali City" class="gallery-image">
+        <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1000" alt="Modern Buildings" class="gallery-image">
+        <img src="https://images.unsplash.com/photo-1592364395653-83e648b20883?w=1000" alt="City Streets" class="gallery-image">
+        <img src="https://images.unsplash.com/photo-1564760290292-23341e4df6ec?w=1000" alt="City Market" class="gallery-image">
+    </div>
+    
+    <!-- Text Content (Left Side) -->
+    <div class="text-content">
+        <h3>🏛️ Kigali - The Capital</h3>
+        <p>A clean, safe, and vibrant city known for its bustling markets, contemporary restaurants, cultural museums, and lively nightlife. The city's organized layout and friendly residents make it easy for travelers to explore.</p>
+        
+        <h3>🎓 Butare - Cultural Hub</h3>
+        <p>Often called Rwanda's intellectual hub, Butare is home to universities, museums, and cultural centers, offering insights into the country's rich heritage and academic excellence.</p>
+        
+        <h3>⛰️ Musanze - Adventure Gateway</h3>
+        <p>A gateway to Volcanoes National Park, Musanze combines scenic beauty with adventure opportunities, from gorilla trekking to exploring caves and hiking trails.</p>
+        
+        <h3>🌆 Modern Development</h3>
+        <p>Rwanda's cities offer world-class infrastructure, reliable transportation, high-speed internet, and modern amenities that rival any major global city.</p>
+        
+        <h3>🏘️ Local Communities</h3>
+        <p>Smaller towns and villages showcase local Rwandan lifestyle, where visitors can engage with communities, experience traditional crafts, and enjoy authentic local cuisine.</p>
+        
+        <h3>✨ Clean & Organized</h3>
+        <p>Rwandan cities are remarkably clean and well-organized. Kigali holds the distinction of being Africa's cleanest city with strict environmental regulations.</p>
+    </div>
+</div>
+</section>
+
+<!-- WHAT YOU GAIN -->
+<section id="gains">
+<div class="title">
+<h2>What You Gain by Visiting Rwanda</h2>
+<p>Visiting Rwanda offers unique wildlife, culture, adventure, and natural beauty that stays in your memory forever.</p>
+</div>
+<div class="grid">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600" alt="Safe Landscape">
+<div>
+<h3>🛡️ Safety & Security</h3>
+<p>Rwanda is one of the safest African countries, making your trip stress-free.</p>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551631321-45e9f9c01a1b?w=600" alt="Gorilla">
+<div>
+<h3>🐵 Unique Wildlife</h3>
+<p>Encounter gorillas, golden monkeys, and diverse bird species.</p>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=600" alt="Green Hills">
+<div>
+<h3>⛰️ Scenic Beauty</h3>
+<p>Rolling hills, lakes, volcanoes, and waterfalls provide breathtaking views.</p>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1583225173988-3d9a1c5d90e5?w=600" alt="Cultural">
+<div>
+<h3>🎭 Cultural Immersion</h3>
+<p>Engage in traditional dance, music, art, and local cuisine experiences.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CULTURE -->
+<section id="culture">
+<div class="title">
+<h2>Culture & Cuisine</h2>
+<p>Rwandan culture is vibrant and welcoming, from music and dance to traditional cuisine.</p>
+</div>
+<div class="image-row">
+<img src="https://images.unsplash.com/photo-1583225173988-3d9a1c5d90e5?w=600" alt="Traditional Dance">
+<img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600" alt="Handmade Crafts">
+<img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600" alt="Traditional Food">
+<img src="https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?w=600" alt="Local Market">
+</div>
+<div class="grid">
+<div class="card culture-card">
+<div class="card-icon">💃</div>
+<div>
+<h3>Traditional Dance</h3>
+<p>Witness Intore dancers and cultural performances.</p>
+</div>
+</div>
+<div class="card culture-card">
+<div class="card-icon">🍲</div>
+<div>
+<h3>Local Cuisine</h3>
+<p>Try Ugali, Isombe, Brochettes, and fresh fruits.</p>
+</div>
+</div>
+<div class="card culture-card">
+<div class="card-icon">🎨</div>
+<div>
+<h3>Arts & Crafts</h3>
+<p>Handmade baskets, fabrics, and pottery from local artisans.</p>
+</div>
+</div>
+<div class="card culture-card">
+<div class="card-icon">🎵</div>
+<div>
+<h3>Festivals & Music</h3>
+<p>Experience vibrant festivals, music, and cultural celebrations.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+<div class="title">
+<h2>Frequently Asked Questions</h2>
+<p>Everything you need to know about visiting Rwanda</p>
+</div>
+
+<div class="faq-container">
+<div class="faq-item">
+<input type="checkbox" id="faq1">
+<label for="faq1" class="faq-question">
+Do I need a visa to visit Rwanda?
+</label>
+<div class="faq-answer">
+Most visitors can obtain a visa on arrival at Kigali International Airport or apply for an e-visa online before travel. Citizens of African Union member states can enter Rwanda visa-free for up to 90 days.
+</div>
+</div>
+
+<div class="faq-item">
+<input type="checkbox" id="faq2">
+<label for="faq2" class="faq-question">
+What is the best time to visit Rwanda?
+</label>
+<div class="faq-answer">
+Rwanda can be visited year-round, but the best time is during the dry seasons from June to September and December to February. These months offer ideal conditions for gorilla trekking and wildlife viewing.
+</div>
+</div>
+
+<div class="faq-item">
+<input type="checkbox" id="faq3">
+<label for="faq3" class="faq-question">
+How much does gorilla trekking cost?
+</label>
+<div class="faq-answer">
+A gorilla trekking permit in Rwanda costs $1,500 per person. This permit allows you one hour with a gorilla family in Volcanoes National Park.
+</div>
+</div>
+
+<div class="faq-item">
+<input type="checkbox" id="faq4">
+<label for="faq4" class="faq-question">
+Is Rwanda safe for tourists?
+</label>
+<div class="faq-answer">
+Yes! Rwanda is consistently ranked as one of the safest countries in Africa. The country has excellent security, clean streets, and friendly people.
+</div>
+</div>
+
+<div class="faq-item">
+<input type="checkbox" id="faq5">
+<label for="faq5" class="faq-question">
+What languages are spoken in Rwanda?
+</label>
+<div class="faq-answer">
+Rwanda has four official languages: Kinyarwanda, French, English, and Swahili. English is widely used in cities and tourist areas.
+</div>
+</div>
+
+<div class="faq-item">
+<input type="checkbox" id="faq6">
+<label for="faq6" class="faq-question">
+What currency is used in Rwanda?
+</label>
+<div class="faq-answer">
+The official currency is the Rwandan Franc (RWF). US Dollars are also widely accepted in hotels and larger establishments.
+</div>
+</div>
+
+<div class="faq-item">
+<input type="checkbox" id="faq7">
+<label for="faq7" class="faq-question">
+What should I pack for Rwanda?
+</label>
+<div class="faq-answer">
+Pack lightweight clothing for daytime and warmer layers for evenings. For gorilla trekking, bring sturdy hiking boots, long pants, and rain gear.
+</div>
+</div>
+
+<div class="faq-item">
+<input type="checkbox" id="faq8">
+<label for="faq8" class="faq-question">
+How do I get around Rwanda?
+</label>
+<div class="faq-answer">
+Rwanda has a well-developed transportation system. In Kigali, you can use motorcycle taxis, regular taxis, or ride-hailing apps.
+</div>
+</div>
+</div>
+</section>
+
+<!-- POPUP -->
+<div id="trip-popup" class="popup">
+<div class="popup-content">
+<a href="#" class="close">&times;</a>
+<h2>Plan Your Trip</h2>
+<form>
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email Address" required>
+<select required>
+<option value="">Select Tour Type</option>
+<option>Gorilla Trekking</option>
+<option>Wildlife Safari</option>
+<option>Cultural Tour</option>
+<option>Eco & Adventure</option>
+</select>
+<input type="date" required>
+<input type="number" placeholder="Number of Travelers" min="1">
+<textarea rows="4" placeholder="Additional Requests"></textarea>
+<button type="submit">Submit Request</button>
+</form>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-branding">
+    <h3>🌿 Discover Rwanda</h3>
+    <p>Experience the Land of a Thousand Hills - Where Nature Meets Adventure</p>
+    
+    <div class="social-icons">
+        <a href="#">📘</a>
+        <a href="#">📷</a>
+        <a href="#">🐦</a>
+        <a href="#">▶️</a>
+        <a href="#">✈️</a>
+    </div>
+</div>
+
+<div class="footer-grid">
+<div class="footer-section">
+    <h4>About Us</h4>
+    <ul>
+        <li><a href="#about">About Rwanda</a></li>
+        <li><a href="#attractions">Our Tours</a></li>
+        <li><a href="#faq">FAQ</a></li>
+    </ul>
+</div>
+
+<div class="footer-section">
+    <h4>Quick Links</h4>
+    <ul>
+        <li><a href="#trip-popup">Plan Your Trip</a></li>
+        <li><a href="#culture">Culture & Cuisine</a></li>
+        <li><a href="#adventure">Adventure</a></li>
+    </ul>
+</div>
+
+<div class="footer-section">
+    <h4>Contact</h4>
+    <p>📧 info@seerwanda.com</p>
+    <p>📞 +250 XXX XXX XXX</p>
+    <p>📍 Kigali, Rwanda</p>
+</div>
+</div>
+
+<div class="footer-divider"></div>
+
+<div class="bottom-footer">
+    <span>© 2026 Discover Rwanda. All rights reserved.</span>
+    <div class="bottom-footer-right">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+    </div>
+</div>
+</footer>
+
+</body>
+</html>
