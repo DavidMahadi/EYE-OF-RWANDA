@@ -1,4 +1,4 @@
-# Peek Rwanda - Travel Website
+# Discover Rwanda - Travel Website
 
 A modern, responsive travel website inspired by Peek Rwanda, built with HTML, CSS, and JavaScript.
 
