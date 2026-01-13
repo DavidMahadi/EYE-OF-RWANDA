@@ -3,200 +3,1134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suggested Itineraries | Discover Rwanda</title>
+<title>Rwanda Tour Packages & Itineraries | Discover Rwanda</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+/* ITINERARY SPECIFIC STYLES */
+.itinerary-hero {
+    background: linear-gradient(135deg, #0f2419 0%, #1a5e20 50%, #2d8f3c 100%);
+    padding: 3rem 5%;
+    text-align: center;
+    color: white;
+    margin-top: 90px;
+}
+
+.itinerary-hero h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.itinerary-hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* FILTER TABS */
+.filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 5%;
+    flex-wrap: wrap;
+    background: rgba(248, 246, 240, 0.5);
+}
+
+.filter-tab {
+    padding: 0.8rem 2rem;
+    background: white;
+    border: 2px solid var(--primary-green);
+    border-radius: 50px;
+    color: var(--primary-green);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.filter-tab:hover,
+.filter-tab.active {
+    background: var(--primary-green);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(26, 94, 32, 0.3);
+}
+
+/* ITINERARY CARDS - HORIZONTAL SCROLL */
+.itinerary-section {
+    padding: 4rem 5%;
+    background: var(--soft-cream);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h3 {
+    font-size: 2.5rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-header .subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    font-style: italic;
+}
+
+.itinerary-scroll-container {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.itinerary-cards {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding: 1rem 0 2rem;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+}
+
+.itinerary-cards::-webkit-scrollbar {
+    height: 10px;
+}
+
+.itinerary-cards::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.itinerary-cards::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--accent-gold), #b8935f);
+    border-radius: 10px;
+}
+
+.itinerary-cards::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-green);
+}
+
+.itinerary-card {
+    flex: 0 0 420px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    scroll-snap-align: start;
+    position: relative;
+}
+
+.itinerary-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+}
+
+.card-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: linear-gradient(135deg, var(--accent-gold), #b8935f);
+    color: var(--deep-forest);
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    z-index: 2;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.itinerary-card:hover .card-image img {
+    transform: scale(1.15);
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent, rgba(15, 36, 25, 0.9));
+    padding: 2rem 1.5rem 1.5rem;
+    color: white;
+}
+
+.card-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.card-content {
+    padding: 2rem;
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.card-description {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.card-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.highlight-icon {
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.card-pricing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 2px solid #f0f0f0;
+}
+
+.price-tag {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-label {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.price-amount {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    font-family: 'Playfair Display', serif;
+}
+
+.price-per {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.btn-details {
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(135deg, var(--primary-green), #2d8f3c);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-details:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 20px rgba(26, 94, 32, 0.4);
+}
+
+.scroll-hint {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.scroll-hint::before,
+.scroll-hint::after {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold));
+}
+
+.scroll-hint::after {
+    background: linear-gradient(90deg, var(--accent-gold), transparent);
+}
+
+/* COMPARISON TABLE */
+.comparison-section {
+    padding: 5rem 5%;
+    background: white;
+}
+
+.comparison-table {
+    max-width: 1200px;
+    margin: 3rem auto;
+    overflow-x: auto;
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table th {
+    background: linear-gradient(135deg, var(--primary-green), #2d8f3c);
+    color: white;
+    padding: 1.5rem 1rem;
+    font-weight: 600;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.comparison-table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr:hover {
+    background: rgba(26, 94, 32, 0.03);
+}
+
+.check-icon {
+    color: var(--primary-green);
+    font-size: 1.3rem;
+}
+
+/* TESTIMONIALS CAROUSEL */
+.testimonial-carousel {
+    padding: 5rem 5%;
+    background: linear-gradient(135deg, var(--deep-forest) 0%, #1a3d2e 100%);
+    color: white;
+}
+
+.testimonial-slides {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 2rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.testimonial-slides::-webkit-scrollbar {
+    height: 8px;
+}
+
+.testimonial-slides::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.testimonial-slides::-webkit-scrollbar-thumb {
+    background: var(--accent-gold);
+    border-radius: 4px;
+}
+
+.testimonial-slide {
+    flex: 0 0 500px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--deep-forest);
+}
+
+.author-info h5 {
+    margin: 0;
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+}
+
+.author-info p {
+    margin: 0.3rem 0 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .itinerary-card {
+        flex: 0 0 320px;
+    }
+    
+    .filter-tabs {
+        gap: 0.5rem;
+    }
+    
+    .filter-tab {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .testimonial-slide {
+        flex: 0 0 90%;
+    }
+}
+</style>
 </head>
 <body>
 
 <nav>
-    <div class="logo-area">
-        <a href="index.html"><img src="SEERWANDA.png" alt="See Rwanda Logo" class="logo-img"></a>
+    <div class="nav-container">
+        <div class="logo-area">
+            <span class="logo-text">🌿 DISCOVER RWANDA</span>
+        </div>
+        
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="#">Explore ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="wetlands.html">Wetlands & Ecosystems</a></li>
+                    <li><a href="wildlife.html">Wildlife</a></li>
+                    <li><a href="attractions.html">Attractions</a></li>
+                    <li><a href="culture.html">Culture & Cuisine</a></li>
+                </ul>
+            </li>
+            <li><a href="itineraries.html" class="active">Itineraries</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html" class="nav-cta">Plan Your Trip</a></li>
+        </ul>
     </div>
-    
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Rwanda</a></li>
-        <li><a href="wetlands.html">Wetlands & Ecosystems</a></li>
-        <li><a href="wildlife.html">Wildlife</a></li>
-        <li><a href="attractions.html">Attractions</a></li>
-        <li><a href="culture.html">Culture & Cuisine</a></li>
-        <li><a href="itineraries.html" class="active">Itineraries</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
 </nav>
 
-<div class="page-header bg-itineraries">
-    <h1>Suggested Itineraries</h1>
-    <p>Choose a journey that fits your time, pace, and interests – from wetlands and wildlife to culture and cuisine.</p>
-</div>
-
-<section class="bg-itineraries bg-section">
-<div class="container" style="max-width: 1400px; margin: 0 auto;">
-<div class="title">
-<h2>Tailored Journeys</h2>
-<p>From weekend escapes to comprehensive conservation-focused adventures</p>
-</div>
-
-<div class="grid">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800" alt="Weekend escape">
-<div>
-<h3>3 Days · Kigali & Lake Kivu Escape</h3>
-<p>
-<strong>Day 1:</strong> Kigali city walk, coffee tasting, and genocide memorial visit.<br>
-<strong>Day 2:</strong> Drive to Lake Kivu, sunset boat ride, and beachfront dinner.<br>
-<strong>Day 3:</strong> Morning at the lake, local crafts shopping, return to Kigali.
-</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1564760290292-23341e4df6ec?w=800" alt="Gorillas and safari">
-<div>
-<h3>7 Days · Gorillas, Wetlands & Safari</h3>
-<p>
-<strong>Days 1–2:</strong> Kigali & wetlands birding experience.<br>
-<strong>Days 3–4:</strong> Volcanoes National Park gorilla trekking and cultural village visit.<br>
-<strong>Days 5–7:</strong> Akagera National Park safari and boat cruise.
-</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800" alt="Conservation-focused journey">
-<div>
-<h3>10 Days · Conservation & Culture Journey</h3>
-<p>
-Combine national parks, wetlands, tea plantations, and home-hosted dinners, with time at community-led conservation projects. Perfect for travelers seeking deep cultural immersion.
-</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800" alt="Adventure itinerary">
-<div>
-<h3>5 Days · Adventure & Nature</h3>
-<p>
-<strong>Day 1:</strong> Arrive Kigali, city tour.<br>
-<strong>Day 2:</strong> Volcanoes National Park, golden monkey trekking.<br>
-<strong>Days 3–4:</strong> Nyungwe Forest canopy walk and chimpanzee tracking.<br>
-<strong>Day 5:</strong> Return to Kigali, departure.
-</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=800" alt="Family itinerary">
-<div>
-<h3>6 Days · Family-Friendly Rwanda</h3>
-<p>
-Kid-friendly activities including cultural villages, gentle nature walks, boat rides on Lake Kivu, and interactive museum visits. Designed for families with children.
-</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Luxury itinerary">
-<div>
-<h3>8 Days · Luxury & Wellness</h3>
-<p>
-Premium lodges, private gorilla trekking permits, spa treatments, chef-led dining experiences, and exclusive wildlife encounters in Rwanda's most beautiful settings.
-</p>
-</div>
-</div>
-</div>
-</div>
+<section class="page-header">
+    <div class="page-header-bg" style="background-image: url('https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1920&q=80');"></div>
+    <div class="page-header-overlay"></div>
+    <div class="page-header-content">
+        <span class="section-title-small" style="color: var(--accent-gold);">TAILORED EXPERIENCES</span>
+        <h1>Rwanda Tour Packages</h1>
+        <p>Expertly crafted itineraries combining wildlife, culture, adventure, and relaxation</p>
+    </div>
 </section>
 
-<section style="background: white; padding: 80px 60px;">
-<div class="title">
-<h2>Customize Your Journey</h2>
-<p>All itineraries can be tailored to your preferences, interests, and budget</p>
+<!-- FILTER TABS -->
+<div class="filter-tabs">
+    <button class="filter-tab active" data-filter="all">All Packages</button>
+    <button class="filter-tab" data-filter="wildlife">Wildlife Focus</button>
+    <button class="filter-tab" data-filter="adventure">Adventure</button>
+    <button class="filter-tab" data-filter="cultural">Cultural</button>
+    <button class="filter-tab" data-filter="luxury">Luxury</button>
+    <button class="filter-tab" data-filter="family">Family Friendly</button>
 </div>
 
-<div class="grid">
-<div class="card">
-<div style="padding: 30px; text-align: center;">
-<h3>✈️ Transportation</h3>
-<p>We arrange airport transfers, private vehicles, and domestic flights to ensure seamless travel.</p>
-</div>
-</div>
+<!-- QUICK GETAWAYS (3-5 Days) -->
+<section class="itinerary-section">
+    <div class="section-header">
+        <h3>🌅 Quick Getaways (3-5 Days)</h3>
+        <p class="subtitle">Perfect for first-time visitors or those with limited time</p>
+    </div>
+    
+    <div class="itinerary-scroll-container">
+        <div class="itinerary-cards">
+            <!-- Card 1 -->
+            <div class="itinerary-card" data-category="wildlife adventure">
+                <div class="card-badge">BEST SELLER</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1551631321-45e9f9c01a1b?w=600&q=80" alt="Gorilla Trekking">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 3 Days / 2 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Gorilla Encounter Express</h4>
+                    <p class="card-description">Intensive gorilla trekking in Volcanoes National Park with cultural village immersion. The quintessential Rwanda experience for time-conscious travelers.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>1x Gorilla Trekking Permit ($1,500 included)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Iby'Iwacu Cultural Village visit</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Upscale lodge accommodation</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Expert guide & private 4x4 transport</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$2,890</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="itinerary-card" data-category="cultural">
+                <div class="card-badge">CULTURAL</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Lake Kivu">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 4 Days / 3 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Kigali to Lake Kivu Explorer</h4>
+                    <p class="card-description">Discover Rwanda's capital and unwind on Africa's most beautiful lake. Perfect blend of history, culture, and relaxation.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Kigali city tour & Genocide Memorial</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Coffee plantation tour with cupping</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Sunset boat cruise on Lake Kivu</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Beachfront resort accommodation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$1,450</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="itinerary-card" data-category="wildlife">
+                <div class="card-badge">WILDLIFE</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=600&q=80" alt="Big Five Safari">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 5 Days / 4 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Akagera Big Five Safari</h4>
+                    <p class="card-description">Classic African safari with multiple game drives, boat safari, and night drives. Encounter all Big Five in diverse ecosystems.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>4x game drives (dawn, day & night)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Boat safari on Lake Ihema</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Luxury tented camp accommodation</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Expert wildlife guide included</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$2,150</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="scroll-hint">Scroll to explore more packages</p>
+    </div>
+</section>
 
-<div class="card">
-<div style="padding: 30px; text-align: center;">
-<h3>🏨 Accommodation</h3>
-<p>From eco-lodges to luxury resorts, we select accommodations that match your style and budget.</p>
-</div>
-</div>
+<!-- CLASSIC TOURS (7-10 Days) -->
+<section class="itinerary-section" style="background: white;">
+    <div class="section-header">
+        <h3>🏔️ Classic Rwanda Tours (7-10 Days)</h3>
+        <p class="subtitle">Comprehensive experiences covering multiple regions</p>
+    </div>
+    
+    <div class="itinerary-scroll-container">
+        <div class="itinerary-cards">
+            <!-- Card 4 -->
+            <div class="itinerary-card" data-category="wildlife adventure">
+                <div class="card-badge">MOST POPULAR</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80" alt="Complete Safari">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 7 Days / 6 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Primates & Safari Complete</h4>
+                    <p class="card-description">Ultimate Rwanda wildlife: gorillas, chimpanzees, golden monkeys & Big Five. Three national parks, comprehensive primate encounters.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Gorilla trekking Volcanoes NP</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Chimpanzee tracking Nyungwe Forest</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Big Five safari Akagera NP</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Canopy walkway & all premium lodges</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$5,890</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 5 -->
+            <div class="itinerary-card" data-category="adventure">
+                <div class="card-badge">ADVENTURE</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Adventure">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 8 Days / 7 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Active Rwanda Adventure</h4>
+                    <p class="card-description">Maximum activity: volcano hiking, gorilla trekking, canopy walk, Lake Kivu kayaking, and Congo Nile Trail cycling.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Mount Bisoke volcano summit hike</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Gorilla trekking permit included</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Nyungwe canopy walk & waterfall treks</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Kayaking, cycling & eco-lodges</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$4,650</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 6 -->
+            <div class="itinerary-card" data-category="cultural">
+                <div class="card-badge">IMMERSIVE</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1583225173988-3d9a1c5d90e5?w=600&q=80" alt="Cultural">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 9 Days / 8 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Cultural Heritage Journey</h4>
+                    <p class="card-description">Deep cultural immersion: villages, artisan cooperatives, home meals, dance performances & community projects.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Multiple cultural village experiences</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Basket weaving & pottery workshops</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Home-hosted traditional meals</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Coffee tours & golden monkey trek</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$3,790</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 7 -->
+            <div class="itinerary-card" data-category="family">
+                <div class="card-badge">FAMILY</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Family Safari">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 10 Days / 9 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Rwanda Family Safari</h4>
+                    <p class="card-description">Family-friendly adventures for ages 8+: wildlife, culture, Lake Kivu activities. Paced for children with engaging experiences.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Kid-friendly game drives Akagera</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Interactive cultural programs</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Lake Kivu water sports & beaches</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Family rooms & connecting suites</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$3,290</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="scroll-hint">Scroll to explore more packages</p>
+    </div>
+</section>
 
-<div class="card">
-<div style="padding: 30px; text-align: center;">
-<h3>🍽️ Meals</h3>
-<p>Enjoy authentic Rwandan cuisine, international options, and special dietary accommodations.</p>
-</div>
-</div>
+<!-- LUXURY EXPEDITIONS -->
+<section class="itinerary-section">
+    <div class="section-header">
+        <h3>✨ Luxury Expeditions (10-14 Days)</h3>
+        <p class="subtitle">Exclusive experiences with 5-star service</p>
+    </div>
+    
+    <div class="itinerary-scroll-container">
+        <div class="itinerary-cards">
+            <!-- Card 8 -->
+            <div class="itinerary-card" data-category="luxury wildlife">
+                <div class="card-badge">LUXURY</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80" alt="Luxury Lodge">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 12 Days / 11 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Ultimate Rwanda Luxury</h4>
+                    <p class="card-description">Rwanda's finest lodges: Bisate, Magashi. Private treks, helicopter transfers, spa treatments, gourmet dining.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Private gorilla & chimp permits (2x each)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Bisate Lodge & Magashi Camp</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Helicopter scenic flights available</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>All-inclusive luxury experience</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$15,900</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 9 -->
+            <div class="itinerary-card" data-category="luxury">
+                <div class="card-badge">HONEYMOON</div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=600&q=80" alt="Romantic">
+                    <div class="card-overlay">
+                        <div class="card-duration">⏱️ 14 Days / 13 Nights</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Romantic Rwanda Honeymoon</h4>
+                    <p class="card-description">Perfect for newlyweds: private experiences, exclusive lodges, couples treatments, sunset cruises, champagne dinners.</p>
+                    
+                    <div class="card-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Private gorilla trekking for two</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Romantic lodges with private pools</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Couples spa & massage treatments</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Champagne bush dinners & surprises</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <div class="price-tag">
+                            <span class="price-label">From</span>
+                            <span class="price-amount">$12,450</span>
+                            <span class="price-per">per person</span>
+                        </div>
+                        <button class="btn-details" onclick="window.location.href='contact.html'">Book Now →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="scroll-hint">Scroll to explore more packages</p>
+    </div>
+</section>
 
-<div class="card">
-<div style="padding: 30px; text-align: center;">
-<h3>👨‍🏫 Expert Guides</h3>
-<p>Local guides with deep knowledge of wildlife, culture, and conservation accompany every journey.</p>
-</div>
-</div>
-</div>
+<!-- COMPARISON TABLE -->
+<section class="comparison-section">
+    <div class="section-header">
+        <h3>📊 Compare Packages</h3>
+        <p class="subtitle">Quick comparison across tour categories</p>
+    </div>
+    
+    <div class="comparison-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Quick Getaways</th>
+                    <th>Classic Tours</th>
+                    <th>Luxury Expeditions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Duration</strong></td>
+                    <td>3-5 Days</td>
+                    <td>7-10 Days</td>
+                    <td>10-14 Days</td>
+                </tr>
+                <tr>
+                    <td><strong>Price Range</strong></td>
+                    <td>$1,450 - $2,890</td>
+                    <td>$3,290 - $5,890</td>
+                    <td>$12,450 - $15,900</td>
+                </tr>
+                <tr>
+                    <td><strong>Gorilla Trekking</strong></td>
+                    <td><span class="check-icon">✓</span> 1x Permit</td>
+                    <td><span class="check-icon">✓</span> 1x Permit</td>
+                    <td><span class="check-icon">✓</span> 2x Private</td>
+                </tr>
+                <tr>
+                    <td><strong>Big Five Safari</strong></td>
+                    <td><span class="check-icon">✓</span> Available</td>
+                    <td><span class="check-icon">✓</span> Included</td>
+                    <td><span class="check-icon">✓</span> Extended</td>
+                </tr>
+                <tr>
+                    <td><strong>Accommodation</strong></td>
+                    <td>Mid to Upscale</td>
+                    <td>Upscale Lodges</td>
+                    <td>5-Star Luxury</td>
+                </tr>
+                <tr>
+                    <td><strong>Group Type</strong></td>
+                    <td>Small or Private</td>
+                    <td>Small or Private</td>
+                    <td>Private Only</td>
+                </tr>
+                <tr>
+                    <td><strong>Meals</strong></td>
+                    <td>Most Included</td>
+                    <td>All Included</td>
+                    <td>All + Fine Dining</td>
+                </tr>
+                <tr>
+                    <td><strong>Best For</strong></td>
+                    <td>First-timers</td>
+                    <td>Comprehensive</td>
+                    <td>Ultimate luxury</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-carousel">
+    <div class="section-header">
+        <h3 style="color: white;">💬 Traveler Experiences</h3>
+        <p class="subtitle" style="color: rgba(255,255,255,0.8);">Real stories from our guests</p>
+    </div>
+    
+    <div class="testimonial-slides">
+        <div class="testimonial-slide">
+            <p class="testimonial-text">"The 7-day Primates & Safari exceeded every expectation. Our guide was phenomenal, lodges stunning, and sitting feet from gorillas—most profound moment of our lives. Worth every penny!"</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">ST</div>
+                <div class="author-info">
+                    <h5>Sarah & James Thompson</h5>
+                    <p>United Kingdom • October 2025</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-slide">
+            <p class="testimonial-text">"Family Safari was perfectly paced for our teenagers. Adventure mixed with relaxation, guides made wildlife fascinating. Kids still talk about it months later. Planning our return!"</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">MC</div>
+                <div class="author-info">
+                    <h5>Maria Chen</h5>
+                    <p>Singapore • August 2025</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-slide">
+            <p class="testimonial-text">"Ultimate Luxury for our 25th anniversary—Bisate Lodge otherworldly, Magashi pure magic. Private trek, helicopter flight, every detail perfect. Trip of a lifetime."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">DM</div>
+                <div class="author-info">
+                    <h5>David & Rebecca Martinez</h5>
+                    <p>USA • June 2025</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-slide">
+            <p class="testimonial-text">"Solo traveler on Cultural Heritage—felt safe, well cared for. Meeting artisans, learning basket weaving, host family meals made it unforgettable. Authentic Rwanda."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">EP</div>
+                <div class="author-info">
+                    <h5>Emma Patel</h5>
+                    <p>Canada • September 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="scroll-hint" style="color: rgba(255,255,255,0.7);">Scroll for more testimonials</p>
+</section>
+
+<!-- CTA SECTION -->
+<section style="background: var(--soft-cream); padding: 5rem 5%; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="color: var(--primary-green); font-size: 2.5rem; margin-bottom: 1.5rem;">Ready to Explore Rwanda?</h2>
+        <p style="font-size: 1.2rem; color: #555; margin-bottom: 2.5rem; line-height: 1.8;">
+            All packages fully customizable. We'll create your perfect itinerary based on interests, budget, and travel style.
+        </p>
+        <a href="contact.html" class="hero-cta" style="display: inline-block; font-size: 1.2rem; padding: 1.2rem 3rem;">
+            Start Planning Your Journey →
+        </a>
+        <p style="margin-top: 1.5rem; color: #666; font-size: 1.05rem;">
+            ✓ Free consultation ✓ Flexible dates ✓ Expert guides ✓ 24/7 support
+        </p>
+    </div>
 </section>
 
 <footer>
-<div class="footer-branding">
-    <h3>🌿 Discover Rwanda</h3>
-    <p>Experience the Land of a Thousand Hills - Where Nature Meets Adventure</p>
-    
-    <div class="social-icons">
-        <a href="#">📘</a>
-        <a href="#">📷</a>
-        <a href="#">🐦</a>
-        <a href="#">▶️</a>
-        <a href="#">✈️</a>
+    <div class="footer-content">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>🌿 Discover Rwanda</h3>
+                <p>Experience the Land of a Thousand Hills, where nature meets adventure and conservation creates lasting impact.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">▶️</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="about.html">About Rwanda</a></li>
+                    <li><a href="wetlands.html">Wetlands</a></li>
+                    <li><a href="wildlife.html">Wildlife</a></li>
+                    <li><a href="attractions.html">Attractions</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Plan</h4>
+                <ul>
+                    <li><a href="itineraries.html">Itineraries</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li>📧 info@discoverrwanda.com</li>
+                    <li>📞 +250 788 XXX XXX</li>
+                    <li>📍 Kigali, Rwanda</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Discover Rwanda. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
     </div>
-</div>
-
-<div class="footer-grid">
-<div class="footer-section">
-    <h4>About Us</h4>
-    <ul>
-        <li><a href="about.html">About Rwanda</a></li>
-        <li><a href="attractions.html">Our Tours</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-    </ul>
-</div>
-
-<div class="footer-section">
-    <h4>Quick Links</h4>
-    <ul>
-        <li><a href="contact.html">Plan Your Trip</a></li>
-        <li><a href="culture.html">Culture & Cuisine</a></li>
-        <li><a href="wildlife.html">Wildlife</a></li>
-    </ul>
-</div>
-
-<div class="footer-section">
-    <h4>Contact</h4>
-    <p>📧 info@seerwanda.com</p>
-    <p>📞 +250 XXX XXX XXX</p>
-    <p>📍 Kigali, Rwanda</p>
-</div>
-</div>
-
-<div class="footer-divider"></div>
-
-<div class="bottom-footer">
-    <span>© 2026 Discover Rwanda. All rights reserved.</span>
-    <div class="bottom-footer-right">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-    </div>
-</div>
 </footer>
+
+<script src="script.js"></script>
+<script>
+// Filter functionality
+document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.itinerary-card').forEach(card => {
+            if (filter === 'all' || card.dataset.category.includes(filter)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>

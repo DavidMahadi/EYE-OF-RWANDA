@@ -3,172 +3,493 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us | Plan Your Trip | Discover Rwanda</title>
+<title>Contact Us - Plan Your Trip | Discover Rwanda</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+.form-section {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.form-section-title {
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.checkbox-label:hover {
+    background: rgba(26, 94, 32, 0.05);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 <body>
 
 <nav>
-    <div class="logo-area">
-        <a href="index.html"><img src="SEERWANDA.png" alt="See Rwanda Logo" class="logo-img"></a>
+    <div class="nav-container">
+        <div class="logo-area">
+            <span class="logo-text">🌿 DISCOVER RWANDA</span>
+        </div>
+        
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="#">Explore ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="wetlands.html">Wetlands & Ecosystems</a></li>
+                    <li><a href="wildlife.html">Wildlife</a></li>
+                    <li><a href="attractions.html">Attractions</a></li>
+                    <li><a href="culture.html">Culture & Cuisine</a></li>
+                </ul>
+            </li>
+            <li><a href="itineraries.html">Itineraries</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html" class="nav-cta active">Plan Your Trip</a></li>
+        </ul>
     </div>
-    
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Rwanda</a></li>
-        <li><a href="wetlands.html">Wetlands & Ecosystems</a></li>
-        <li><a href="wildlife.html">Wildlife</a></li>
-        <li><a href="attractions.html">Attractions</a></li>
-        <li><a href="culture.html">Culture & Cuisine</a></li>
-        <li><a href="itineraries.html">Itineraries</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
 </nav>
 
-<div class="page-header bg-contact">
-    <h1>Plan Your Trip</h1>
-    <p>Let's create an unforgettable Rwandan adventure tailored just for you</p>
-</div>
+<section class="page-header">
+    <div class="page-header-bg" style="background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920&q=80');"></div>
+    <div class="page-header-overlay"></div>
+    <div class="page-header-content">
+        <span class="section-title-small" style="color: var(--accent-gold);">LET'S PLAN TOGETHER</span>
+        <h1>Start Your Rwanda Adventure</h1>
+        <p>Complete this form and our travel experts will craft a personalized itinerary just for you</p>
+    </div>
+</section>
 
-<section class="bg-contact bg-section">
+<section style="background: var(--soft-cream); padding: 5rem 5%;">
 <div class="container" style="max-width: 1000px; margin: 0 auto;">
-<div class="contact-form-container">
-<h2>Get In Touch</h2>
-<form>
-<div class="form-group">
-<label for="name">Full Name *</label>
-<input type="text" id="name" name="name" required>
-</div>
+<form id="comprehensive-contact-form">
+    <!-- Personal Information -->
+    <div class="form-section">
+        <h3 class="form-section-title">👤 Personal Information</h3>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number (with country code) *</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="country">Country of Residence *</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="nationality">Nationality *</label>
+                <input type="text" id="nationality" name="nationality" required>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Travel Details -->
+    <div class="form-section">
+        <h3 class="form-section-title">📅 Travel Details</h3>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="arrivalDate">Preferred Arrival Date *</label>
+                <input type="date" id="arrivalDate" name="arrivalDate" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="departureDate">Preferred Departure Date *</label>
+                <input type="date" id="departureDate" name="departureDate" required>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="duration">Trip Duration (Days) *</label>
+                <input type="number" id="duration" name="duration" min="1" max="30" placeholder="e.g., 7" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="travelers">Number of Travelers *</label>
+                <input type="number" id="travelers" name="travelers" min="1" max="20" placeholder="e.g., 2" required>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="groupType">Group Type *</label>
+            <select id="groupType" name="groupType" required>
+                <option value="">-- Select Group Type --</option>
+                <option value="solo">Solo Traveler</option>
+                <option value="couple">Couple/Romantic Getaway</option>
+                <option value="family">Family with Children</option>
+                <option value="friends">Friends Group</option>
+                <option value="corporate">Corporate/Team Building</option>
+                <option value="honeymoon">Honeymoon</option>
+            </select>
+        </div>
+        
+        <div class="form-group" style="margin-top: 1rem;">
+            <label>Ages of Travelers (if applicable)</label>
+            <input type="text" name="ages" placeholder="e.g., 2 adults (35, 38), 2 children (8, 12)">
+        </div>
+    </div>
+    
+    <!-- Experience Preferences -->
+    <div class="form-section">
+        <h3 class="form-section-title">🎯 What You Want to Experience</h3>
+        
+        <div class="form-group">
+            <label><strong>Select Your Top Interests</strong> (Choose all that apply) *</label>
+            <div class="checkbox-grid">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="gorilla-trekking" required>
+                    <span>🦍 Gorilla Trekking</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="big-five-safari">
+                    <span>🦁 Big Five Safari</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="chimpanzee-tracking">
+                    <span>🐒 Chimpanzee Tracking</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="golden-monkeys">
+                    <span>🐵 Golden Monkeys</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="birding-wetlands">
+                    <span>🦅 Birding & Wetlands</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="cultural-experiences">
+                    <span>🎭 Cultural Experiences</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="lake-kivu">
+                    <span>🏖️ Lake Kivu Relaxation</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="volcano-hiking">
+                    <span>🌋 Volcano Hiking</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="canopy-walk">
+                    <span>🌲 Canopy Walkway</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="coffee-tours">
+                    <span>☕ Coffee Plantation Tours</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="kigali-city">
+                    <span>🏙️ Kigali City Experience</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="interests" value="local-cuisine">
+                    <span>🍽️ Local Food & Cuisine</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-group" style="margin-top: 1.5rem;">
+            <label for="activityLevel">Your Activity Level *</label>
+            <select id="activityLevel" name="activityLevel" required>
+                <option value="">-- Select Activity Level --</option>
+                <option value="relaxed">Relaxed - Light walking, mostly leisure, plenty of rest</option>
+                <option value="moderate">Moderate - Mix of activities with rest periods</option>
+                <option value="active">Active - Full days, ready for hiking and trekking</option>
+                <option value="very-active">Very Active - Challenging treks, maximum adventure</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Accommodation & Budget -->
+    <div class="form-section">
+        <h3 class="form-section-title">🏨 Accommodation & Budget</h3>
+        
+        <div class="form-group">
+            <label for="accommodationType">Preferred Accommodation Style *</label>
+            <select id="accommodationType" name="accommodationType" required>
+                <option value="">-- Select Accommodation --</option>
+                <option value="budget">Budget - Clean guesthouses & basic lodges ($50-100/night)</option>
+                <option value="mid-range">Mid-Range - Comfortable hotels & eco-lodges ($100-250/night)</option>
+                <option value="upscale">Upscale - Premium lodges & boutique hotels ($250-500/night)</option>
+                <option value="luxury">Luxury - 5-Star exclusive lodges & resorts ($500+/night)</option>
+                <option value="mixed">Mixed - Combination based on location</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="budgetRange">Total Budget Range Per Person (USD) *</label>
+            <select id="budgetRange" name="budgetRange" required>
+                <option value="">-- Select Budget Range --</option>
+                <option value="2000-3000">$2,000 - $3,000</option>
+                <option value="3000-5000">$3,000 - $5,000</option>
+                <option value="5000-8000">$5,000 - $8,000</option>
+                <option value="8000-12000">$8,000 - $12,000</option>
+                <option value="12000-15000">$12,000 - $15,000</option>
+                <option value="15000+">$15,000+</option>
+                <option value="flexible">Flexible - Send me options</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="mealPlan">Meal Plan Preference</label>
+            <select id="mealPlan" name="mealPlan">
+                <option value="">-- Select Meal Plan --</option>
+                <option value="all-inclusive">All Meals Included (Breakfast, Lunch, Dinner)</option>
+                <option value="full-board">Full Board (Breakfast & Dinner)</option>
+                <option value="half-board">Half Board (Breakfast Only)</option>
+                <option value="flexible">Flexible - Mix of included & independent dining</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Special Requirements -->
+    <div class="form-section">
+        <h3 class="form-section-title">⚠️ Special Requirements & Assistance</h3>
+        
+        <div class="form-group">
+            <label for="dietary">Dietary Requirements/Restrictions</label>
+            <input type="text" id="dietary" name="dietary" placeholder="e.g., Vegetarian, Vegan, Halal, Gluten-free, Food allergies">
+        </div>
+        
+        <div class="form-group">
+            <label for="medical">Medical Conditions or Mobility Concerns</label>
+            <textarea id="medical" name="medical" rows="2" placeholder="Please inform us of any conditions that may affect activities or require special arrangements"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label><strong>Do you need help with?</strong> (Select all that apply)</label>
+            <div class="checkbox-grid">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="assistance" value="visa-application">
+                    <span>📝 Visa Application Guidance</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="assistance" value="flight-booking">
+                    <span>✈️ International Flights</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="assistance" value="travel-insurance">
+                    <span>🛡️ Travel Insurance</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="assistance" value="gorilla-permits">
+                    <span>🦍 Gorilla Trekking Permits</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="assistance" value="chimp-permits">
+                    <span>🐒 Chimpanzee Permits</span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="assistance" value="vaccinations">
+                    <span>💉 Vaccination Information</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional Information -->
+    <div class="form-section">
+        <h3 class="form-section-title">💬 Tell Us More</h3>
+        
+        <div class="form-group">
+            <label for="hearAbout">How did you hear about us?</label>
+            <select id="hearAbout" name="hearAbout">
+                <option value="">-- Please Select --</option>
+                <option value="google">Google Search</option>
+                <option value="social-media-facebook">Facebook</option>
+                <option value="social-media-instagram">Instagram</option>
+                <option value="social-media-twitter">Twitter/X</option>
+                <option value="youtube">YouTube</option>
+                <option value="friend-referral">Friend/Family Recommendation</option>
+                <option value="travel-blog">Travel Blog/Website</option>
+                <option value="travel-agent">Travel Agent</option>
+                <option value="previous-visit">Previous Customer</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="specialRequests">Special Requests or Additional Information</label>
+            <textarea id="specialRequests" name="specialRequests" rows="4" placeholder="Anything else we should know? Special occasions (birthday, anniversary, honeymoon), specific interests, preferred pace of travel, etc."></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label class="checkbox-label" style="background: rgba(26,94,32,0.05); padding: 1rem; border-radius: 8px;">
+                <input type="checkbox" name="newsletter" value="yes">
+                <span>📧 Yes! Send me Rwanda travel tips, conservation updates, and exclusive offers (you can unsubscribe anytime)</span>
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <label class="checkbox-label" style="background: rgba(212,165,116,0.1); padding: 1rem; border-radius: 8px;">
+                <input type="checkbox" name="terms" value="yes" required>
+                <span><strong>I agree to the terms and conditions</strong> and understand that submitting this form does not constitute a booking *</span>
+            </label>
+        </div>
+    </div>
 
-<div class="form-group">
-<label for="email">Email Address *</label>
-<input type="email" id="email" name="email" required>
-</div>
-
-<div class="form-group">
-<label for="phone">Phone Number</label>
-<input type="tel" id="phone" name="phone">
-</div>
-
-<div class="form-group">
-<label for="tour-type">Tour Type</label>
-<select id="tour-type" name="tour-type">
-<option value="">Select Tour Type</option>
-<option>Gorilla Trekking</option>
-<option>Wildlife Safari</option>
-<option>Cultural Tour</option>
-<option>Eco & Adventure</option>
-<option>Wetlands & Birding</option>
-<option>Custom Itinerary</option>
-</select>
-</div>
-
-<div class="form-group">
-<label for="travel-date">Preferred Travel Date</label>
-<input type="date" id="travel-date" name="travel-date">
-</div>
-
-<div class="form-group">
-<label for="travelers">Number of Travelers</label>
-<input type="number" id="travelers" name="travelers" min="1" value="1">
-</div>
-
-<div class="form-group">
-<label for="message">Tell us about your dream journey *</label>
-<textarea id="message" name="message" rows="5" required placeholder="What experiences are you most interested in? Any specific requirements or preferences?"></textarea>
-</div>
-
-<button type="submit" class="btn-submit">Submit Request</button>
+    <button type="submit" class="btn-submit" style="font-size: 1.2rem; padding: 1.5rem;">
+        🌿 Submit My Travel Request
+    </button>
+    
+    <p style="text-align: center; color: #666; margin-top: 1.5rem; line-height: 1.6;">
+        <strong>What happens next?</strong><br>
+        Our expert team will review your information and send you a detailed, personalized itinerary within 24-48 hours (usually much faster!). We'll include accommodation recommendations, activity options, and a transparent cost breakdown.
+    </p>
 </form>
-</div>
 
-<div class="contact-info">
-<h3>Contact Information</h3>
-<div class="contact-info-grid">
-<div class="contact-item">
-<strong>Email</strong>
-<p>info@seerwanda.com</p>
-</div>
-
-<div class="contact-item">
-<strong>Phone</strong>
-<p>+250 XXX XXX XXX</p>
-</div>
-
-<div class="contact-item">
-<strong>Address</strong>
-<p>Kigali, Rwanda</p>
-</div>
-
-<div class="contact-item">
-<strong>Response Time</strong>
-<p>We typically respond within 24 hours</p>
-</div>
-</div>
+<!-- Contact Information -->
+<div style="margin-top: 4rem; padding: 3rem; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+    <h3 style="text-align: center; color: var(--primary-green); margin-bottom: 2rem;">Prefer to Talk Directly?</h3>
+    <div class="contact-info-grid">
+        <div class="contact-item" style="text-align: center;">
+            <strong style="font-size: 2rem;">📧</strong>
+            <h4 style="color: var(--primary-green); margin: 0.5rem 0;">Email Us</h4>
+            <p><a href="mailto:info@discoverrwanda.com" style="color: var(--accent-gold);">info@discoverrwanda.com</a></p>
+            <p style="font-size: 0.9rem; color: #666;">Detailed inquiries welcome</p>
+        </div>
+        
+        <div class="contact-item" style="text-align: center;">
+            <strong style="font-size: 2rem;">📞</strong>
+            <h4 style="color: var(--primary-green); margin: 0.5rem 0;">Call/WhatsApp</h4>
+            <p style="font-weight: 600;">+250 788 XXX XXX</p>
+            <p style="font-size: 0.9rem; color: #666;">Available 24/7 for emergencies</p>
+        </div>
+        
+        <div class="contact-item" style="text-align: center;">
+            <strong style="font-size: 2rem;">📍</strong>
+            <h4 style="color: var(--primary-green); margin: 0.5rem 0;">Visit Our Office</h4>
+            <p>Kigali Heights, KG 7 Ave</p>
+            <p style="font-size: 0.9rem; color: #666;">Kigali, Rwanda</p>
+        </div>
+        
+        <div class="contact-item" style="text-align: center;">
+            <strong style="font-size: 2rem;">⏰</strong>
+            <h4 style="color: var(--primary-green); margin: 0.5rem 0;">Response Time</h4>
+            <p style="font-weight: 600;">Within 24 hours</p>
+            <p style="font-size: 0.9rem; color: #666;">Usually same-day response!</p>
+        </div>
+    </div>
 </div>
 </div>
 </section>
 
 <footer>
-<div class="footer-branding">
-    <h3>🌿 Discover Rwanda</h3>
-    <p>Experience the Land of a Thousand Hills - Where Nature Meets Adventure</p>
-    
-    <div class="social-icons">
-        <a href="#">📘</a>
-        <a href="#">📷</a>
-        <a href="#">🐦</a>
-        <a href="#">▶️</a>
-        <a href="#">✈️</a>
+    <div class="footer-content">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>🌿 Discover Rwanda</h3>
+                <p>Experience the Land of a Thousand Hills, where nature meets adventure and conservation creates lasting impact.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">▶️</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="about.html">About Rwanda</a></li>
+                    <li><a href="wetlands.html">Wetlands</a></li>
+                    <li><a href="wildlife.html">Wildlife</a></li>
+                    <li><a href="attractions.html">Attractions</a></li>
+                    <li><a href="culture.html">Culture</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Plan</h4>
+                <ul>
+                    <li><a href="itineraries.html">Itineraries</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li>📧 info@discoverrwanda.com</li>
+                    <li>📞 +250 788 XXX XXX</li>
+                    <li>📍 Kigali, Rwanda</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Discover Rwanda. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
     </div>
-</div>
-
-<div class="footer-grid">
-<div class="footer-section">
-    <h4>About Us</h4>
-    <ul>
-        <li><a href="about.html">About Rwanda</a></li>
-        <li><a href="attractions.html">Our Tours</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-    </ul>
-</div>
-
-<div class="footer-section">
-    <h4>Quick Links</h4>
-    <ul>
-        <li><a href="contact.html">Plan Your Trip</a></li>
-        <li><a href="culture.html">Culture & Cuisine</a></li>
-        <li><a href="wildlife.html">Wildlife</a></li>
-    </ul>
-</div>
-
-<div class="footer-section">
-    <h4>Contact</h4>
-    <p>📧 info@seerwanda.com</p>
-    <p>📞 +250 XXX XXX XXX</p>
-    <p>📍 Kigali, Rwanda</p>
-</div>
-</div>
-
-<div class="footer-divider"></div>
-
-<div class="bottom-footer">
-    <span>© 2026 Discover Rwanda. All rights reserved.</span>
-    <div class="bottom-footer-right">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-    </div>
-</div>
 </footer>
 
-<script>
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Thank you for your inquiry! We will get back to you within 24 hours.');
-    this.reset();
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
