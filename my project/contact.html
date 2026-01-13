@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Plan Your Trip | Discover Rwanda</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo-area">
+        <a href="index.html"><img src="SEERWANDA.png" alt="See Rwanda Logo" class="logo-img"></a>
+    </div>
+    
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Rwanda</a></li>
+        <li><a href="wetlands.html">Wetlands & Ecosystems</a></li>
+        <li><a href="wildlife.html">Wildlife</a></li>
+        <li><a href="attractions.html">Attractions</a></li>
+        <li><a href="culture.html">Culture & Cuisine</a></li>
+        <li><a href="itineraries.html">Itineraries</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="page-header bg-contact">
+    <h1>Plan Your Trip</h1>
+    <p>Let's create an unforgettable Rwandan adventure tailored just for you</p>
+</div>
+
+<section class="bg-contact bg-section">
+<div class="container" style="max-width: 1000px; margin: 0 auto;">
+<div class="contact-form-container">
+<h2>Get In Touch</h2>
+<form>
+<div class="form-group">
+<label for="name">Full Name *</label>
+<input type="text" id="name" name="name" required>
+</div>
+
+<div class="form-group">
+<label for="email">Email Address *</label>
+<input type="email" id="email" name="email" required>
+</div>
+
+<div class="form-group">
+<label for="phone">Phone Number</label>
+<input type="tel" id="phone" name="phone">
+</div>
+
+<div class="form-group">
+<label for="tour-type">Tour Type</label>
+<select id="tour-type" name="tour-type">
+<option value="">Select Tour Type</option>
+<option>Gorilla Trekking</option>
+<option>Wildlife Safari</option>
+<option>Cultural Tour</option>
+<option>Eco & Adventure</option>
+<option>Wetlands & Birding</option>
+<option>Custom Itinerary</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="travel-date">Preferred Travel Date</label>
+<input type="date" id="travel-date" name="travel-date">
+</div>
+
+<div class="form-group">
+<label for="travelers">Number of Travelers</label>
+<input type="number" id="travelers" name="travelers" min="1" value="1">
+</div>
+
+<div class="form-group">
+<label for="message">Tell us about your dream journey *</label>
+<textarea id="message" name="message" rows="5" required placeholder="What experiences are you most interested in? Any specific requirements or preferences?"></textarea>
+</div>
+
+<button type="submit" class="btn-submit">Submit Request</button>
+</form>
+</div>
+
+<div class="contact-info">
+<h3>Contact Information</h3>
+<div class="contact-info-grid">
+<div class="contact-item">
+<strong>Email</strong>
+<p>info@seerwanda.com</p>
+</div>
+
+<div class="contact-item">
+<strong>Phone</strong>
+<p>+250 XXX XXX XXX</p>
+</div>
+
+<div class="contact-item">
+<strong>Address</strong>
+<p>Kigali, Rwanda</p>
+</div>
+
+<div class="contact-item">
+<strong>Response Time</strong>
+<p>We typically respond within 24 hours</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="footer-branding">
+    <h3>🌿 Discover Rwanda</h3>
+    <p>Experience the Land of a Thousand Hills - Where Nature Meets Adventure</p>
+    
+    <div class="social-icons">
+        <a href="#">📘</a>
+        <a href="#">📷</a>
+        <a href="#">🐦</a>
+        <a href="#">▶️</a>
+        <a href="#">✈️</a>
+    </div>
+</div>
+
+<div class="footer-grid">
+<div class="footer-section">
+    <h4>About Us</h4>
+    <ul>
+        <li><a href="about.html">About Rwanda</a></li>
+        <li><a href="attractions.html">Our Tours</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+    </ul>
+</div>
+
+<div class="footer-section">
+    <h4>Quick Links</h4>
+    <ul>
+        <li><a href="contact.html">Plan Your Trip</a></li>
+        <li><a href="culture.html">Culture & Cuisine</a></li>
+        <li><a href="wildlife.html">Wildlife</a></li>
+    </ul>
+</div>
+
+<div class="footer-section">
+    <h4>Contact</h4>
+    <p>📧 info@seerwanda.com</p>
+    <p>📞 +250 XXX XXX XXX</p>
+    <p>📍 Kigali, Rwanda</p>
+</div>
+</div>
+
+<div class="footer-divider"></div>
+
+<div class="bottom-footer">
+    <span>© 2026 Discover Rwanda. All rights reserved.</span>
+    <div class="bottom-footer-right">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+    </div>
+</div>
+</footer>
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you for your inquiry! We will get back to you within 24 hours.');
+    this.reset();
+});
+</script>
+
+</body>
+</html>
